@@ -32,7 +32,7 @@
       %select#settings_alarm_sound{name: 'settings[output_pin]'}
         %option{value: '', selected: @settings.data[:output_pin].blank?}= 'None'
         - (0..16).each do |pin|
-          %option{value: pin, selected: (@settings.data[:output_pin] == pin)}= pin
+          %option{value: pin, selected: (@settings.data[:output_pin] == pin.to_s)}= pin
 
   // Input Pin
   .uk-form-row
@@ -41,7 +41,7 @@
       %select#settings_alarm_sound{name: 'settings[input_pin]'}
         %option{value: '', selected: @settings.data[:input_pin].blank?}= 'None'
         - (0..16).each do |pin|
-          %option{value: pin, selected: (@settings.data[:input_pin] == pin)}= pin
+          %option{value: pin, selected: (@settings.data[:input_pin] == pin.to_s)}= pin
 
   %p
     %button.uk-button.uk-button-primary{name: "action", type: "submit"}
