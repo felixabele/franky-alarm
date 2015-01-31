@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %link{ href: "/css/uikit.min.css", rel: "stylesheet", type: "text/css"}
+    %link{ href: "/css/uikit.almost-flat.min.css", rel: "stylesheet", type: "text/css"}
+
+    %script{ type: "text/javascript", src: "/js/jquery-2.1.1.min.js"}
+    %script{ type: "text/javascript", src: "/js/uikit.min.js"}
+
+    %title Franky Alarm
+
+  %body
+
+    .uk-container.uk-container-center.uk-margin-top.uk-margin-large-bottom
+      %nav.uk-navbar.uk-margin-large-bottom
+        .uk-container.uk-container-center
+          %a.uk-navbar-brand.uk-hidden-small{:href => "/"}
+            %i.uk-icon-bell-o
+            Franky Alarm
+          %ul.uk-navbar-nav.uk-hidden-small
+            %li{class: (request.path_info == '/' ? 'uk-active' : '')}
+              %a{:href => "/"} Settings
+            %li{class: (request.path_info == '/control' ? 'uk-active' : '')}
+              %a{:href => "/control"} Alarm Controll
+          .uk-float-right.uk-navbar-brand{style: 'padding-top: 2px'}
+            - if @settings.data[:active]
+              %a.uk-button.uk-button-danger{href: "/toggle_activate"} Inactivate
+            - else
+              %a.uk-button.uk-button-success{href: "/toggle_activate"} Activate
+
+      - if flash.any?
+        - cl = {notice: 'success', error: 'danger'}[flash.keys.first]
+        .uk-alert{class: "uk-alert-#{cl}"}
+          %a.uk-alert-close.uk-close
+          %p= flash.values.first
+
+      = yield
