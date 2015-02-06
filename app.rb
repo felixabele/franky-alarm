@@ -24,6 +24,7 @@ class App < Sinatra::Base
     if el_pid = settings.read_attribute( :event_listener_pid )
       Process.kill(9, el_pid)
     end
+    StartAlarm.call( settings )
   end
 
   before do
@@ -65,7 +66,7 @@ class App < Sinatra::Base
   end
 
   post '/api/start' do
-    render text: StartAlarm.call( @settings )
+    StartAlarm.call( @settings )
   end
 
   post '/start' do

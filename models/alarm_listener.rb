@@ -19,10 +19,11 @@ class AlarmListener
       end
 
       loop do
+	puts "outp"
         state = gpio.readAll
 
-        if state[listen_pin] == 1
-          RestClient.post 'http://localhost:4567/api/start'
+        if state[listen_pin] == 0
+          puts RestClient.post 'http://localhost:4567/api/start', {}
           gpio.write( activate_pin, 1 ) if activate_pin > 0
         end
         sleep 0.3
@@ -34,7 +35,11 @@ class AlarmListener
 
   def stop!
     if proc_id = @settings.read_attribute( :event_listener_pid )
-      Process.kill(9, proc_id)
+      begin
+        Process.kill(9, proc_id)
+      rescue Exception => e
+        puts e
+      end
     end
   end
 

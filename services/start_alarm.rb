@@ -5,7 +5,7 @@ class StartAlarm
 
     unless settings.alarm_activated?
       if alarm_sound = settings.data[:alarm_sound]
-        s = Sound.new( alarm_sound )
+	s = Sound.new( alarm_sound )
         s.play!
         msg << " playing #{alarm_sound}"
       end
