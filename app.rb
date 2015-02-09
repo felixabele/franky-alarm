@@ -18,13 +18,17 @@ class App < Sinatra::Base
     also_reload '/models/setting'
   end
 
-  # make sure event listener is stopped with the application
+  # make sure event listener is stopped and alarm is inactive  with the application
   at_exit do
     settings = Setting.new
     if el_pid = settings.read_attribute( :event_listener_pid )
-      Process.kill(9, el_pid)
+      begin	
+        Process.kill(9, el_pid)
+      rescue
+      end
     end
-    StartAlarm.call( settings )
+    StopAlarm.call( settings )
+    settings.update_attribute( :active, false )
   end
 
   before do
