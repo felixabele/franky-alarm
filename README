@@ -1,4 +1,4 @@
-bundle exec thin start -p 4567
+This is a simple alarm application build with sinatra and aimed to run on a Raspberry Pi
 
 # start me with:
 rvmsudo rackup -p 4567
