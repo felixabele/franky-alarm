@@ -5,11 +5,11 @@ Its activated by an input PIN and can trigger an output PIN.
 The alarm can send emails and play sounds.
 
 
-#Requirements
+###Requirements
 SoX - to play audio
 
-#install
+###install
 bundle install
 
-#start with:
+###start with:
 rvmsudo rackup -p 4567
