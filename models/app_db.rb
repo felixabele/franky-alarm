@@ -1,10 +1,10 @@
-class Setting
+class AppDb
 
   ATTRIBUTES = [:active, :alarm_sound, :email_receiver, :output_pin, :input_pin]
 
   attr_accessor :data, :ps_store
 
-  def initialize db_name="franky_alarm.settings"
+  def initialize db_name="franky_alarm.app_db"
     @data ||= {}
     @ps_store = PStore.new( db_name )
     @ps_store.transaction do

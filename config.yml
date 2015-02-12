@@ -1,0 +1,8 @@
+:smtp:
+  :address: 'smtp.gmail.com'
+  :port: '587'
+  :enable_starttls_auto: true
+  :user_name: 'felix.abele@gmail.com'
+  :password: 'somepassword'
+  :authentication: 'plain'
+  :domain: "localhost.localdomain"

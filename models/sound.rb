@@ -1,6 +1,6 @@
 class Sound
 
-  attr_accessor :file, :player, :settings
+  attr_accessor :file, :player, :app_db
 
   def initialize file
     @file = file
@@ -12,16 +12,14 @@ class Sound
 
   # --- plays audio and stores
   def play!
-
     if @file
-    fork do
-      begin
-	puts "play"
-        #system "play #{@file}" # exec
-      rescue
-	puts "error playing sound"
+      fork do
+        begin
+          system "play #{@file}" # exec
+        rescue
+  	      puts "error playing sound"
+        end
       end
-    end
     end
   end
 

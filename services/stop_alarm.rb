@@ -1,15 +1,15 @@
 class StopAlarm
 
-  def self.call settings
+  def self.call app_db
 
-    if settings.alarm_activated?
+    if app_db.alarm_activated?
       Sound.new( nil ).stop!
 
-      if email_receiver = settings.data[:email_receiver]
+      if email_receiver = app_db.data[:email_receiver]
         Email.new( email_receiver ).send_stop_notice!
       end
 
-      settings.update_attribute( :alarm_activated, false )
+      app_db.update_attribute( :alarm_activated, false )
     end
 
     return "Alarm Stopped"

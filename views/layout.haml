@@ -19,11 +19,11 @@
             Franky Alarm
           %ul.uk-navbar-nav.uk-hidden-small
             %li{class: (request.path_info == '/' ? 'uk-active' : '')}
-              %a{:href => "/"} Settings
+              %a{:href => "/"} app_db
             %li{class: (request.path_info == '/control' ? 'uk-active' : '')}
               %a{:href => "/control"} Alarm Controll
           .uk-float-right.uk-navbar-brand{style: 'padding-top: 2px'}
-            - if @settings.data[:active]
+            - if @app_db.data[:active]
               %a.uk-button.uk-button-danger{href: "/toggle_activate"} Inactivate
             - else
               %a.uk-button.uk-button-success{href: "/toggle_activate"} Activate

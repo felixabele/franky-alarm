@@ -4,44 +4,44 @@
 
   // activation switch
   .uk-form-row
-    %label.uk-form-label{for: "settings_active"} Alarm is active
+    %label.uk-form-label{for: "app_db_active"} Alarm is active
     .uk-form-controls
-      %input#settings_active{type: "checkbox", name: 'settings[active]', checked: @settings.data[:active], value: 'true'}
+      %input#app_db_active{type: "checkbox", name: 'app_db[active]', checked: @app_db.data[:active], value: 'true'}
 
   // Sound Files
   .uk-form-row
-    %label.uk-form-label{for: "settings_alarm_sound"} Choose Alarm Sound
+    %label.uk-form-label{for: "app_db_alarm_sound"} Choose Alarm Sound
     .uk-form-controls
-      %select#settings_alarm_sound{name: 'settings[alarm_sound]'}
-        %option{value: '', selected: @settings.data[:alarm_sound].blank?}= 'No Alarm Sound'
+      %select#app_db_alarm_sound{name: 'app_db[alarm_sound]'}
+        %option{value: '', selected: @app_db.data[:alarm_sound].blank?}= 'No Alarm Sound'
         - @sound_files.each do |file|
-          %option{value: file, selected: (@settings.data[:alarm_sound] == file)}= file
+          %option{value: file, selected: (@app_db.data[:alarm_sound] == file)}= file
 
   // email notification
   .uk-form-row
-    %label.uk-form-label{for: "settings_email_receiver"} Send notification to
+    %label.uk-form-label{for: "app_db_email_receiver"} Send notification to
     .uk-form-controls
       .uk-form-icon
         %i.uk-icon-envelope-o
-        %input#settings_email_receiver{placeholder: "Email Address", name: 'settings[email_receiver]', type: "email", value: @settings.data[:email_receiver]}/
+        %input#app_db_email_receiver{placeholder: "Email Address", name: 'app_db[email_receiver]', type: "email", value: @app_db.data[:email_receiver]}/
 
   // Output Pin
   .uk-form-row
-    %label.uk-form-label{for: "settings_output_pin"} Trigger output pin
+    %label.uk-form-label{for: "app_db_output_pin"} Trigger output pin
     .uk-form-controls
-      %select#settings_alarm_sound{name: 'settings[output_pin]'}
-        %option{value: '', selected: @settings.data[:output_pin].blank?}= 'None'
-        - (0..16).each do |pin|
-          %option{value: pin, selected: (@settings.data[:output_pin] == pin.to_s)}= pin
+      %select#app_db_alarm_sound{name: 'app_db[output_pin]'}
+        %option{value: '', selected: @app_db.data[:output_pin].blank?}= 'None'
+        - (1..16).each do |pin|
+          %option{value: pin, selected: (@app_db.data[:output_pin] == pin.to_s)}= pin
 
   // Input Pin
   .uk-form-row
-    %label.uk-form-label{for: "settings_input_pin"} Trigger input pin
+    %label.uk-form-label{for: "app_db_input_pin"} Trigger input pin
     .uk-form-controls
-      %select#settings_alarm_sound{name: 'settings[input_pin]'}
-        %option{value: '', selected: @settings.data[:input_pin].blank?}= 'None'
-        - (0..16).each do |pin|
-          %option{value: pin, selected: (@settings.data[:input_pin] == pin.to_s)}= pin
+      %select#app_db_alarm_sound{name: 'app_db[input_pin]'}
+        %option{value: '', selected: @app_db.data[:input_pin].blank?}= 'None'
+        - (1..16).each do |pin|
+          %option{value: pin, selected: (@app_db.data[:input_pin] == pin.to_s)}= pin
 
   %p
     %button.uk-button.uk-button-primary{name: "action", type: "submit"}
